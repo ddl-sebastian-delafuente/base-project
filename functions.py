@@ -16,7 +16,7 @@ import re
 import urllib3
 import xml.etree.ElementTree as ET
 
-# seba44
+# seba - new
 # https://uishared-dev.workbench-analyze-team-sandbox.domino.tech/v4/projects/6745cba21ed4a56e6c8da3b9/gitRepositories/6745cba81ed4a56e6c8da3bc/git/raw?fileName=functions.py&isDownload=true
 
 import requests
