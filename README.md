@@ -1,4 +1,4 @@
 # base-project
 
 
-![VsCode!](vscode.svg)
+![VsCode!](/raw/latest/vscode.svg)
