@@ -1,7 +1,7 @@
 # base-project
 
 
-![VsCode!](/raw/latest/vscode.svg)
+![VsCode!](raw/latest/vscode.svg)
 
 ![VScode](raw/latest/vscode.svg?inline=true)
 
