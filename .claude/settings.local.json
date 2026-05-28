@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npm ls *)",
+      "Bash(python3 -c \"import fastapi, uvicorn; print\\(fastapi.__version__, uvicorn.__version__\\)\")",
+      "Bash(pip install *)",
+      "Bash(python3 main.py)",
+      "Bash(python3 -c ' *)",
+      "Bash(chmod +x /mnt/code/app.sh)"
+    ]
+  }
+}
