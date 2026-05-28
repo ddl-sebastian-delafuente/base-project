@@ -16,12 +16,10 @@ function App() {
     <div style={{ padding: 24, maxWidth: 1100, margin: '0 auto' }}>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <div>
-          <Typography>
-            <h1 style={{ marginBottom: 8 }}>Domino Frontend</h1>
-            <p style={{ margin: 0 }}>
-              A Vite + React + TypeScript starter wired up to the Domino design system.
-            </p>
-          </Typography>
+          <Typography.H1>Domino Frontend</Typography.H1>
+          <Typography.Text>
+            A Vite + React + TypeScript starter wired up to the Domino design system.
+          </Typography.Text>
         </div>
 
         <Row gutter={[16, 16]}>
@@ -45,10 +43,10 @@ function App() {
             <Card title="Next steps">
               <Space direction="vertical" size="small" style={{ width: '100%' }}>
                 <div>
-                  <Tag>React 18</Tag>{' '}
-                  <Tag>Vite</Tag>{' '}
-                  <Tag>react-router 5</Tag>{' '}
-                  <Tag color="blue">Domino</Tag>
+                  <Tag type="user-generated">React 18</Tag>{' '}
+                  <Tag type="user-generated">Vite</Tag>{' '}
+                  <Tag type="user-generated">react-router 5</Tag>{' '}
+                  <Tag type="success">Domino</Tag>
                 </div>
                 <p style={{ margin: 0 }}>
                   Edit <code>src/App.tsx</code> to start building. Component props can
