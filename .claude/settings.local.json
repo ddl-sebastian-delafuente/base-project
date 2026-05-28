@@ -12,7 +12,8 @@
       "Bash(python3 -c ' *)",
       "Bash(chmod +x /mnt/code/app.sh)",
       "mcp__storybook__get-documentation",
-      "mcp__storybook__list-all-documentation"
+      "mcp__storybook__list-all-documentation",
+      "Bash(env)"
     ]
   }
 }
