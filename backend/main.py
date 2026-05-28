@@ -24,38 +24,42 @@ def _access_token() -> str:
     return r.text.strip()
 
 
-def _require_context() -> None:
-    if not (DOMINO_API_HOST and PROJECT_ID):
+def _resolve_project_id(projectId: str | None) -> str:
+    pid = projectId or PROJECT_ID
+    if not (DOMINO_API_HOST and pid):
         raise HTTPException(
-            status_code=503,
-            detail="Domino context not available (DOMINO_API_HOST / DOMINO_PROJECT_ID missing)",
+            status_code=400,
+            detail="No projectId provided (query param) and DOMINO_PROJECT_ID env not set",
         )
+    return pid
 
 
 @app.get("/api/project")
-def get_project() -> dict[str, Any]:
-    _require_context()
+def get_project(projectId: str | None = None) -> dict[str, Any]:
+    pid = _resolve_project_id(projectId)
     headers = {"Authorization": f"Bearer {_access_token()}"}
     r = httpx.get(
-        f"{DOMINO_API_HOST}/v4/projects/{PROJECT_ID}",
+        f"{DOMINO_API_HOST}/v4/projects/{pid}",
         headers=headers,
         timeout=10.0,
     )
+    if r.status_code == 404:
+        raise HTTPException(status_code=404, detail=f"Project {pid} not found")
     r.raise_for_status()
+    data = r.json()
     return {
-        "id": PROJECT_ID,
-        "name": PROJECT_NAME,
-        "owner": PROJECT_OWNER,
-        **r.json(),
+        "id": pid,
+        "name": data.get("name", ""),
+        "owner": data.get("ownerUsername", ""),
+        **data,
     }
 
 
 @app.get("/api/entities")
-async def get_entities() -> dict[str, list[Any]]:
-    _require_context()
+async def get_entities(projectId: str | None = None) -> dict[str, list[Any]]:
+    pid = _resolve_project_id(projectId)
 
     headers = {"Authorization": f"Bearer {_access_token()}"}
-    pid = PROJECT_ID
 
     paths = {
         "jobs": f"/v4/jobs?projectId={pid}",

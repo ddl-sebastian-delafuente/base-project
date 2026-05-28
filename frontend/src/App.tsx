@@ -97,9 +97,11 @@ function App() {
 
   useEffect(() => {
     let cancelled = false
+    const projectId = new URLSearchParams(window.location.search).get('projectId')
+    const qs = projectId ? `?projectId=${encodeURIComponent(projectId)}` : ''
     Promise.all([
-      fetch('/api/project').then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
-      fetch('/api/entities').then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
+      fetch(`/api/project${qs}`).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
+      fetch(`/api/entities${qs}`).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
     ])
       .then(([p, e]) => {
         if (cancelled) return
