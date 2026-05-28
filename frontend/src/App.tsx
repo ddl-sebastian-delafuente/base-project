@@ -99,9 +99,12 @@ function App() {
     let cancelled = false
     const projectId = new URLSearchParams(window.location.search).get('projectId')
     const qs = projectId ? `?projectId=${encodeURIComponent(projectId)}` : ''
+    // Resolve API URLs relative to the current document so the Domino
+    // /apps-internal/<appId>/ proxy prefix is preserved.
+    const apiBase = window.location.pathname.replace(/[^/]*$/, '') + 'api'
     Promise.all([
-      fetch(`/api/project${qs}`).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
-      fetch(`/api/entities${qs}`).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
+      fetch(`${apiBase}/project${qs}`).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
+      fetch(`${apiBase}/entities${qs}`).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText))),
     ])
       .then(([p, e]) => {
         if (cancelled) return
