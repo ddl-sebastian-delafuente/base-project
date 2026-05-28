@@ -282,7 +282,7 @@ function App() {
 
   if (error) {
     return (
-      <div style={{ padding: 24, maxWidth: 800, margin: '0 auto' }}>
+      <div style={{ padding: '24px 0' }}>
         <Typography.H1>Domino Frontend</Typography.H1>
         <Typography.Text type="BodyDefaultStrong">Could not load project context</Typography.Text>
         <div style={{ marginTop: 8 }}>
@@ -294,14 +294,14 @@ function App() {
 
   if (!project || !entities) {
     return (
-      <div style={{ padding: 24 }}>
+      <div style={{ padding: '24px 0' }}>
         <SpinnerWrapper />
       </div>
     )
   }
 
   return (
-    <div style={{ padding: 24, maxWidth: 1280, margin: '0 auto' }}>
+    <div style={{ padding: '24px 0' }}>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <div>
           <Typography.H1>{project.name}</Typography.H1>
